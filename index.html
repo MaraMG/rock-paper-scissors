@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<script>
+
+// Capitalizes the user imput 
+function capitalize(string) {
+    const firstLetter = string.charAt(0);
+    const firstLetterUpperCase = firstLetter.toUpperCase();
+
+    const restOfString = string.slice(1);
+    const restOfStringLowerCase = restOfString.toLowerCase();
+
+    const capitalizedString = firstLetterUpperCase + restOfStringLowerCase;
+    return capitalizedString;
+
+    // console.log(string.charAt(0).toUpperCase() + string.slice(1).toLowerCase());
+}
+
+// Creates a random outcome for the computer out of the three options
+function computerPlay() {
+    const elements = ["Rock", "Paper", "Scissors"]; // ARRAY: VARIABLE CON MAS DE UN DATO!
+    const randomElement = elements[Math.floor(Math.random() * elements.length)]; // Un elemento random del array que le estoy pasando!
+
+    return randomElement;
+}
+
+// Evaluates all cases and its outcomes
+function playRound (playerSelection, computerSelection) {
+    let roundStatus;
+
+    if (playerSelection == "Rock") {
+            if (computerSelection == "Rock") {
+                roundStatus = "It's a draw!";
+            }
+            if (computerSelection == "Paper") {
+                roundStatus = "You lost!";
+            }
+            if (computerSelection == "Scissors") {
+                roundStatus = "You won!";
+            }
+    }
+    if (playerSelection == "Paper") {
+        if (computerSelection == "Paper") {
+            roundStatus = "It's a draw!";
+        }
+        if (computerSelection == "Rock") {
+            roundStatus = "You won!";
+        }
+        if (computerSelection == "Scissors") {
+            roundStatus = "You lost!";
+        }
+    }
+    if (playerSelection == "Scissors") {
+        if (computerSelection == "Scissors") {
+            roundStatus = "It's a draw!";
+        }
+        if (computerSelection == "Rock") {
+            roundStatus = "You lost!";
+        }
+        if (computerSelection == "Paper") {
+            roundStatus = "You won!";
+        }
+    }
+
+return roundStatus;
+}
+
+function game() {
+    
+    // Iniciates counters
+    let userScore = 0; 
+    let computerScore = 0;  
+
+    // For five rounds, analizes the game and keeps the score
+    for  (let i = 0; i < 5; i++) {
+        let userImput = prompt("Your play!");
+        userImput = capitalize(userImput);
+        let computerImput = computerPlay();
+
+        status = playRound (userImput, computerImput);
+        if (status == "You won!") {
+            console.log("You won! " + userImput + " beats " + computerImput);
+            userScore++;
+        }
+        if (status == "You lost!") {
+            console.log("You lost! " + computerImput + " beats " + userImput);
+            computerScore++;
+        }
+        if (status == "It's a draw!") {
+            console.log("it's a draw!");
+        }
+    }
+    // Analizes who win or losses and comunicates it
+    if (userScore > computerScore) {
+        console.log("You are the mastermind of this game!");
+    }
+    if(computerScore > userScore) {
+        console.log("Oops, the computer did it again!");
+    }
+    if (computerScore == userScore) {
+        console.log("This ain't fun, innit?");
+    }
+}
+
+
+</script>
+
+</body>
+</html>
